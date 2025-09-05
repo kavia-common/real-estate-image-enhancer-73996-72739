@@ -2,11 +2,12 @@
 
 # Universal Database Restore Script
 # Automatically detects backup type and restores to running database
+# Restores schema, RLS, triggers, and audit tables for PostgreSQL.
 
-DB_NAME="myapp"
-DB_USER="appuser"
-DB_PASSWORD="dbuser123"
-DB_PORT="5000"
+DB_NAME="${DB_NAME:-myapp}"
+DB_USER="${DB_USER:-appuser}"
+DB_PASSWORD="${DB_PASSWORD:-dbuser123}"
+DB_PORT="${DB_PORT:-5000}"
 
 # SQLite restore
 if [ -f "database_backup.db" ] && [ -f "${DB_NAME}" ]; then
@@ -58,6 +59,6 @@ echo "  Starting with fresh database"
 echo ""
 echo "Backup files checked:"
 echo "  - database_backup.db (SQLite)"
-echo "  - database_backup.sql (PostgreSQL/MySQL)"  
+echo "  - database_backup.sql (PostgreSQL/MySQL)"
 echo "  - database_backup.archive (MongoDB)"
 exit 0
